@@ -28,3 +28,6 @@ A minimalist dual-ball dodging game built with native Swift and SwiftUI.
 ## Requirements
 - Xcode 15+
 - iOS 15.0+
+
+## Demo
+![alt text](./resources/image.png)
