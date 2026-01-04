@@ -1,0 +1,27 @@
+# Xcode
+.DS_Store
+*/build/
+*.derivedData
+*.xcuserstate
+*.
+project.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Bundle artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Trae
+.trae/
