@@ -31,7 +31,7 @@ A minimalist dual-ball dodging game built with native Swift and SwiftUI.
 
 ## Demo
 <div style="display: flex; justify-content: space-around;">
-  <img src="./resources/image.png" width="300" alt="图片1">
-  <img src="./resources/image-1.png" width="300" alt="图片2">
-  <img src="./resources/image-2.png" width="300" alt="图片3">
+  <img src="./resources/image.png" width="150" alt="图片1">
+  <img src="./resources/image-1.png" width="150" alt="图片2">
+  <img src="./resources/image-2.png" width="150" alt="图片3">
 </div>
