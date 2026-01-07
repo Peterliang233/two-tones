@@ -203,7 +203,7 @@ struct GameView: View {
                 }
                 .background(Color.black.opacity(0.9))
             } else if engine.state == .playing {
-                HStack(alignment: .top) {
+                HStack(alignment: .top, spacing: 12) {
                     // Home Button
                     Button(action: {
                         withAnimation {
@@ -212,51 +212,57 @@ struct GameView: View {
                     }) {
                         Image(systemName: "house.fill")
                             .font(.system(size: 20))
-                            .foregroundColor(.white.opacity(0.6))
-                            .padding(8)
-                            .background(Color.black.opacity(0.3))
+                            .foregroundColor(.white.opacity(0.8))
+                            .frame(width: 44, height: 44) // Standard touch target
+                            .background(Color.white.opacity(0.1)) // Subtle bg
                             .clipShape(Circle())
                     }
-                    .padding(.top, 40)
-                    .padding(.leading, 16)
+                    // Align button visually with the text block
+                    // Text block height is roughly Caption + Title (~40pt).
+                    // Button is 44pt.
+                    // To align top of button with top of text, we can use alignment guides or just center vertically if we want.
+                    // But user wants "Level 1" and "Target" aligned.
+                    // Since we use .top alignment for HStack, the top of Button and top of VStacks will align.
+                    // Button is 44x44. Text starts immediately.
+                    // "Level 1" is caption.
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 2) {
                         Text(engine.levels[engine.currentLevelIndex].name)
-                            .font(.caption)
+                            .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.gray)
                         Text("\(engine.score / 10)")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 28, weight: .bold)) // Slightly larger
                             .foregroundColor(.white)
                     }
-                    .padding(.top, 40) // Status bar area
-                    .padding(.leading, 8)
                     
                     Spacer()
                     
                     if let target = engine.levels[engine.currentLevelIndex].targetScore {
-                        VStack(alignment: .trailing) {
+                        VStack(alignment: .trailing, spacing: 2) {
                             Text("Target")
-                                .font(.caption)
+                                .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.gray)
                             Text("\(target / 10)")
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(.white.opacity(0.5))
+                                .font(.system(size: 28, weight: .bold))
+                                .foregroundColor(.white)
                         }
-                        .padding()
-                        .padding(.top, 40)
-                    }
-                    if engine.scoreMultiplier > 1 {
-                        Text("2x SCORE!")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.yellow)
-                            .padding(.top, 80)
-                            .transition(.scale)
-                    }
-                    
-                    if engine.emergencySpinsAvailable > 0 {
-                        // Removed
                     }
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, 60) // Unified top padding for safe area
+                
+                // Score Multiplier / Other overlays
+                if engine.scoreMultiplier > 1 {
+                    VStack {
+                         Text("2x SCORE!")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.yellow)
+                            .padding(.top, 120) // Push down below header
+                            .transition(.scale)
+                         Spacer()
+                    }
+                }
+                
                 Spacer()
             } else if engine.state == .levelComplete {
                 Color.black.opacity(0.8)

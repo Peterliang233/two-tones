@@ -25,3 +25,12 @@ fastlane/test_output
 
 # Trae
 .trae/
+
+# Android
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/*.iml
+android/.DS_Store
